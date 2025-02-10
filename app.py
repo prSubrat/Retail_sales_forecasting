@@ -28,7 +28,7 @@ n_days = st.sidebar.slider("Forecast Period (days)", min_value=7, max_value=365,
 # "Generate Forecast" button
 if st.sidebar.button("Generate Forecast"):
     # Load and prepare data
-    df = pd.read_csv("C:/Users/User/Downloads/retail_sales_dataset.csv")  # Ensure dataset has a 'Date' column
+    df = pd.read_csv("retail_sales_dataset.csv")  # Ensure dataset has a 'Date' column
     df['ds'] = pd.to_datetime(df['Date'])
 
     # Filter the dataframe based on the selected start date
@@ -57,5 +57,18 @@ if st.sidebar.button("Generate Forecast"):
 else:
     st.info("Please set the parameters in the sidebar and click 'Generate Forecast' to view the results.")
 
+import streamlit as st
+import pandas as pd
+
+# Create a file uploader widget
+uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+
+# Check if the file has been uploaded
+if uploaded_file is not None:
+    # Read the file as a CSV
+    df = pd.read_csv("retail_sales_dataset.csv")
+
+    # Display the DataFrame
+    st.write(df)
 
 
